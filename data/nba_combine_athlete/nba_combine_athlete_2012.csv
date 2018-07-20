@@ -1,10 +1,4 @@
-PLAYER,POS,"LANE AGILITY TIME 
-(SECONDS)","SHUTTLE RUN 
-(SECONDS)","THREE QUARTER SPRINT 
-(SECONDS)","STANDING VERTICAL LEAP 
-(INCHES)","MAX VERTICAL LEAP 
-(INCHES)","MAX BENCH PRESS 
-(REPETITIONS)"
+PLAYER,POS,Agility,Shuttle,Sprint,Standing_Vertical,Max_Vertical,Bench
 Andre Drummond,C,10.83,-,3.39,31.5,33.5,10
 Andrew Nicholson,PF,11.89,-,3.67,28.5,30.5,10
 Anthony Davis,PF-C,-,-,-,-,-,-
