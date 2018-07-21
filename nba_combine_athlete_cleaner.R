@@ -11,7 +11,6 @@ for(year in c(2004:2018)) {
   
 }
 
-combine_data$POS.y <- NULL
 combine_data <- rename(combine_data, PLAYERID = PLAYER)
 
 combine_data <- combine_data %>% mutate(PLAYER = PLAYERID)
@@ -37,6 +36,43 @@ trunc_first_names <- sapply(new_player_column, FUN = function(x){str_sub(x[[1]],
 last_name <- sapply(new_player_column, FUN = function(x){x[length(x)]})
 
 combine_data$PLAYER <- mapply(function(first, last){paste(first, last, sep = "")}, trunc_first_names, last_name)
+
+new_height_no_shoes <- combine_data$HEIGHT_NO_SHOES %>% 
+  str_replace_all("'", "") %>% 
+  str_trim() %>% 
+  str_split(" ")
+
+combine_data$HEIGHT_NO_SHOES <- sapply(new_height_no_shoes, FUN = function(x){
+  as.double(x[1]) * 12 + as.double(x[2])
+})
+
+new_height_shoes <- combine_data$HEIGHT_SHOES %>% 
+  str_replace_all("'", "") %>% 
+  str_trim() %>% 
+  str_split(" ")
+
+combine_data$HEIGHT_SHOES <- sapply(new_height_shoes, FUN = function(x){
+  as.double(x[1]) * 12 + as.double(x[2])
+})
+
+new_standing_reach <- combine_data$STANDING_REACH %>% 
+  str_replace_all("'", "") %>% 
+  str_trim() %>% 
+  str_split(" ")
+
+combine_data$STANDING_REACH <- sapply(new_standing_reach, FUN = function(x){
+  as.double(x[1]) * 12 + as.double(x[2])
+})
+
+new_wingspans <- combine_data$WINGSPAN %>% 
+  str_replace_all("'", "") %>% 
+  str_trim() %>% 
+  str_split(" ")
+
+combine_data$WINGSPAN <- sapply(new_wingspans, FUN = function(x){
+  as.double(x[1]) * 12 + as.double(x[2])
+})
+
 
 save(combine_data, file = "data/combine_data.RData")
 
