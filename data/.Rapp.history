@@ -1,0 +1,4 @@
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/batting_2014_2015.RData")
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/combine_data.RData")
+View(combine_data)
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_data_all.RData")
