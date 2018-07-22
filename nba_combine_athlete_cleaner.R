@@ -35,7 +35,7 @@ new_player_column <- new_player_column %>% str_split(" ")
 trunc_first_names <- sapply(new_player_column, FUN = function(x){str_sub(x[[1]], 1, 3)})
 last_name <- sapply(new_player_column, FUN = function(x){x[length(x)]})
 
-combine_data$PLAYER <- mapply(function(first, last){paste(first, last, sep = "")}, trunc_first_names, last_name)
+combine_data$PLAYERID <- mapply(function(first, last){paste(first, last, sep = "")}, trunc_first_names, last_name)
 
 new_height_no_shoes <- combine_data$HEIGHT_NO_SHOES %>% 
   str_replace_all("'", "") %>% 
