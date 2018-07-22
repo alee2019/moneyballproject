@@ -17,7 +17,7 @@ nba_data <- nba_data %>% mutate(PLAYER = PLAYERID)
 new_player_column <- nba_data$PLAYERID %>% 
   str_replace_all("\\d+", "") %>% 
   str_trim() %>% 
-  str_replace_all("II|III|IV", "") %>% 
+  str_replace_all("III|II|IV", "") %>% 
   str_replace_all("(?![\\,\\.])[[:punct:]]", "") %>% 
   str_to_upper() %>% 
   str_replace_all(" JR\\.| SR\\.", "") %>% 
@@ -56,4 +56,4 @@ nba_data$TO_PCT <- sapply(nba_data$TO_PCT, FUN = function(x) {
   x %>% str_sub(1, -2) %>% as.double() %>% {. / 100}
 })
 
-save(combine_data, file = "data/nba_advanced.RData")
+save(nba_data, file = "data/nba_advanced.RData")

@@ -17,7 +17,7 @@ ncaa_data <- ncaa_data %>% mutate(PLAYER = PLAYERID)
 new_player_column <- ncaa_data$PLAYERID %>% 
   str_replace_all("\\d+", "") %>% 
   str_trim() %>% 
-  str_replace_all("II|III|IV", "") %>% 
+  str_replace_all("III|II|IV", "") %>% 
   str_replace_all("(?![\\,\\.])[[:punct:]]", "") %>% 
   str_to_upper() %>% 
   str_replace_all(" JR\\.| SR\\.", "") %>% 
@@ -56,4 +56,4 @@ ncaa_data$TO_PCT <- sapply(ncaa_data$TO_PCT, FUN = function(x) {
   x %>% str_sub(1, -2) %>% as.double() %>% {. / 100}
 })
 
-save(combine_data, file = "data/ncaa_defense.RData")
+save(ncaa_data, file = "data/ncaa_defense.RData")
