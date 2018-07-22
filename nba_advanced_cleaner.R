@@ -18,12 +18,11 @@ new_player_column <- nba_data$PLAYERID %>%
   str_replace_all("\\d+", "") %>% 
   str_trim() %>% 
   str_replace_all("II|III|IV", "") %>% 
-  str_replace_all("(?!,)[[:punct:]]", "") %>% 
+  str_replace_all("(?![\\,\\.])[[:punct:]]", "") %>% 
   str_to_upper() %>% 
-  str_replace_all("Jr|Sr", "") %>% 
+  str_replace_all(" JR\\.| SR\\.", "") %>% 
+  str_replace_all("\\.", "") %>% 
   str_split(",")
-
-length(new_player_column)
 
 trunc_first_names <- sapply(new_player_column, FUN = function(x){
     x[2] %>% str_trim() %>% str_sub(1, 3) %>% str_trim()

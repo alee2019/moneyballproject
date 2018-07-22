@@ -27,8 +27,6 @@ new_player_column <- new_player_column %>%
   str_to_upper()
 
 
-
-
 new_player_column <- gsub("[[:punct:]]+", "", new_player_column)
 new_player_column <- new_player_column %>% str_split(" ")
 
