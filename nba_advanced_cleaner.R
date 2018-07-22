@@ -38,7 +38,7 @@ team_abbrv <- sapply(new_player_column, FUN = function(x) {
 })
 
 nba_data$PLAYERID <- mapply(function(first, last){paste(first, last, sep = "")}, trunc_first_names, last_name)
-nba_data$Team <- team_abbrv
+nba_data$TEAM <- team_abbrv
 
 nba_data$STL_PCT <- sapply(nba_data$STL_PCT, FUN = function(x) {
   x %>% str_sub(1, -2) %>% as.double() %>% {. / 100}
