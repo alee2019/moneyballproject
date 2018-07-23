@@ -1,19 +1,15 @@
 library(tidyverse)
 #install.packages("Lahman")
-ncaa_data1 <- ncaa_data %>%
-  select(PLAYERID, Team, GP, GS, MPG, DEF_RTG, DEF_REB_PCT, STL_PCT,BLK_PCT, Year)
-nba_data1 <- nba_data_all %>%
-  select(PLAYERID, TEAM, GP, GS, MPG, DEF_RTG, DEF_REB_PCT, STL_PCT,BLK_PCT, DEFLECTIONS_PER_48,Year)
-combined <- merge(nba_data1, ncaa_data1, by = "PLAYERID")
+
+combined <- data_complete %>%
+  select(PLAYERID, TEAM, GP.x, GS.x, MPG.x,MPG.y, DEF_RTG.x,DEF_RTG.y, DEF_REB_PCT.x,DEF_REB_PCT.y, STL_PCT.x,STL_PCT.y,BLK_PCT.x,BLK_PCT.y, DEFLECTIONS_PER_48,Year)
 combined <- combined %>%
   filter(MPG.y >= 15, MPG.x >= 15, GP.y >=15, GP.x >= 40)
 fit <- lm(DEF_RTG.x ~ DEF_RTG.y, data = combined)
 fit
-combined_sum <- combined %>%
-  summarize(mean = mean(DEF_RTG.x))
-combined_sum
 g <- ggplot(data = combined) +
-  geom_point(aes(x = DEF_RTG.y, y = DEF_RTG.x), size = 0.3) +
-  geom_abline(intercept = 78.7999, slope = 0.3041, col = 'red')
+  geom_point(aes(x = DEF_RTG.y, y = DEF_RTG.x), size = 0.3, alpha = .3) +
+  geom_abline(intercept = 79.0397, slope = 0.3029, col = 'red') +
+geom_smooth(aes(x = DEF_RTG.y, DEF_RTG.x), method = "lm", se = F)
 g
 cor(combined[['DEF_RTG.y']], combined[['DEF_RTG.x']])
