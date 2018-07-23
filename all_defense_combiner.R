@@ -6,4 +6,6 @@ load("data/all_defense_players.RData")
 all_teams <- rename(all_teams, Year.x = Season, ALL_DEFENSE = Team)
 all_teams$PLAYER <- NULL
 
-all_data <- left_join(all_data, all_teams, by = c("PLAYERID", "Year.x"))
+data_complete <- left_join(all_data, all_teams, by = c("PLAYERID", "Year.x"))
+
+save(data_complete, file = "data/data_complete.RData")
