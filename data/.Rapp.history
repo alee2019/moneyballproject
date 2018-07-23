@@ -15,3 +15,7 @@ load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/all_data.RDat
 =======
 >>>>>>> 18821b693a7978527f443d8c04a43a8c7fd8e50d
 >>>>>>> 2fb2326ca403f82fbc16f8028236b87eed656f0c
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_advanced.RData")
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_college_combine_all.RData")
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/data_complete.RData")
+load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/all_defense_players.RData")
