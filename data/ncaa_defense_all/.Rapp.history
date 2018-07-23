@@ -1,0 +1,2 @@
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/ncaa_defense_all/ncaa_defense.RData")
+View(ncaa_defense)

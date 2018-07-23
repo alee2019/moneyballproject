@@ -2,3 +2,8 @@ load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/batting_2014_
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/combine_data.RData")
 View(combine_data)
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_data_all.RData")
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/nba_data_all.RData")
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/ncaa_defense.RData")
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/nba_data_all.RData")
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/ncaa_defense.RData")
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/combine_data.RData")
