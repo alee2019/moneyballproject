@@ -1,2 +1,6 @@
+<<<<<<< HEAD
+load("/Users/AJ/Desktop/Moneyball2018Data/moneyballproject/data/ncaa_defense_all/ncaa_defense.RData")
+=======
 load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/ncaa_defense_all/ncaa_defense.RData")
 View(ncaa_defense)
+>>>>>>> 18821b693a7978527f443d8c04a43a8c7fd8e50d
