@@ -22,3 +22,4 @@ load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/all_defense_p
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/data_complete.RData")
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/combined.RData")
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/data_complete.RData")
+load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/combine_data.RData")
