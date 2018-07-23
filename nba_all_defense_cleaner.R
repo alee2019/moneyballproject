@@ -45,3 +45,8 @@ last_name <- sapply(new_player_column, FUN = function(x){x[length(x)]})
 all_teams$PLAYERID <- mapply(function(first, last){paste(first, last, sep = "")}, trunc_first_names, last_name)
 
 save(all_teams, file = "data/all_defense_players.RData")
+
+
+
+
+
