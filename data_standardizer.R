@@ -40,6 +40,25 @@ qualified_nba <- qualified_nba %>%
 #qualified_nba <- qualified_nba %>% 
 #  filter(!is.nan(zDEF_RTG_NBA_year), !is.na(zDEF_RTG_NBA_year))
 
+qualified_nba <- rename(qualified_nba,
+                        YEAR_NBA = Year.x, 
+                        YEAR_NCAA = Year, 
+                        TEAM_NCAA = Team, 
+                        TEAM_NBA = TEAM,
+                        GP_NBA = GP.x,
+                        GP_NCAA = GP.y,
+                        GS_NBA = GS.x,
+                        GS_NCAA = GS.y,
+                        MPG_NBA = MPG.x,
+                        MPG_NCAA = MPG.y,
+                        DEF_RTG_NBA = DEF_RTG.x,
+                        DEF_RTG_NCAA = DEF_RTG.y,
+                        DEF_REB_PCT_NBA = DEF_REB_PCT.x,
+                        DEF_REB_PCT_NCAA = DEF_REB_PCT.y,
+                        STL_PCT_NBA = STL_PCT.x,
+                        BLK_PCT_NCAA = BLK_PCT.y,
+                        )
+
 guards <- qualified_nba %>% filter(HEIGHT_GROUP == 1)
 forwards <- qualified_nba %>% filter(HEIGHT_GROUP == 2)
 centers <- qualified_nba %>% filter(HEIGHT_GROUP == 3)
