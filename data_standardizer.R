@@ -28,7 +28,7 @@ qualified_nba <- qualified_nba %>% mutate(HEIGHT_GROUP = case_when(
 ))
 
 qualified_nba <- qualified_nba %>% 
-  group_by(Year, HEIGHT_GROUP) %>% 
+  group_by(Year.x, HEIGHT_GROUP) %>% 
   mutate(zDEF_RTG_NBA_year = (-1) * standardize(DEF_RTG.x),
          zSTL_PCT_NBA_year = standardize(STL_PCT.x),
          zBLK_PCT_NBA_year = standardize(BLK_PCT.x),
@@ -42,7 +42,7 @@ qualified_nba <- qualified_nba %>%
 
 qualified_nba <- rename(qualified_nba,
                         YEAR_NBA = Year.x, 
-                        YEAR_NCAA = Year, 
+                        YEAR_NCAA = Year.y, 
                         TEAM_NCAA = Team, 
                         TEAM_NBA = TEAM,
                         GP_NBA = GP.x,
@@ -53,11 +53,10 @@ qualified_nba <- rename(qualified_nba,
                         MPG_NCAA = MPG.y,
                         DEF_RTG_NBA = DEF_RTG.x,
                         DEF_RTG_NCAA = DEF_RTG.y,
-                        DEF_REB_PCT_NBA = DEF_REB_PCT.x,
-                        DEF_REB_PCT_NCAA = DEF_REB_PCT.y,
                         STL_PCT_NBA = STL_PCT.x,
+                        STL_PCT_NCAA = STL_PCT.y,
                         BLK_PCT_NCAA = BLK_PCT.y,
-                        )
+                        BLK_PCT_NBA = BLK_PCT.x)
 
 guards <- qualified_nba %>% filter(HEIGHT_GROUP == 1)
 forwards <- qualified_nba %>% filter(HEIGHT_GROUP == 2)
