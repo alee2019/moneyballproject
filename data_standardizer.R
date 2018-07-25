@@ -42,7 +42,7 @@ qualified_nba <- qualified_nba %>%
 
 qualified_nba <- rename(qualified_nba,
                         YEAR_NBA = Year.x, 
-                        YEAR_NCAA = Year.y, 
+                        YEAR_NCAA = Year, 
                         TEAM_NCAA = Team, 
                         TEAM_NBA = TEAM,
                         GP_NBA = GP.x,
