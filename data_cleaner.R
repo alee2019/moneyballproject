@@ -59,6 +59,16 @@ nba_data$TO_PCT <- sapply(nba_data$TO_PCT, FUN = function(x) {
   x %>% str_sub(1, -2) %>% as.double() %>% {. / 100}
 })
 
+nba_data <- nba_data %>% select(PLAYERID, Year, TEAM, GP, MPG, DEF_RTG, STL_PCT, BLK_PCT, PLAYER)
+nba_data <- rename(nba_data,
+                               YEAR_NBA = Year,
+                               TEAM_NBA = TEAM,
+                               GP_NBA = GP,
+                               MPG_NBA = MPG,
+                               DEF_RTG_NBA = DEF_RTG,
+                               STL_PCT_NBA = STL_PCT,
+                               BLK_PCT_NBA = BLK_PCT)
+
 ##cleaning nba combine data and putting it into combine_data tibble
 
 combine_data <- data.frame()
@@ -148,6 +158,12 @@ combine_data$Sprint <- sapply(combine_data$Sprint, FUN = function(x) {
   as.double(x)
 })
 
+combine_data <- combine_data %>% select(PLAYERID, POS, Agility, Sprint, Max_Vertical, Year, HEIGHT_NO_SHOES, WINGSPAN, PLAYER)
+combine_data <- rename(combine_data, 
+                       AGILITY = Agility,
+                       MAX_VERTICAL = Max_Vertical, 
+                       SPRINT = Sprint,
+                       YEAR = Year)
 
 
 ##cleaning ncaa data and putting it into ncaa_data tibble
@@ -283,7 +299,7 @@ standardize <- function(x) {
 }
 
 nba_and_combine_data <- nba_and_combine_data %>% 
-  filter(!is.na(POS), GP >= 40, MPG >= 15.0)
+  filter(!is.na(POS), GP_NBA >= 40, MPG_NBA >= 15.0)
 
 nba_and_combine_data[nba_and_combine_data == '-'] <- NA
 
@@ -304,25 +320,19 @@ nba_and_combine_data <- nba_and_combine_data %>% mutate(HEIGHT_GROUP = case_when
 ))
 
 nba_and_combine_data <- nba_and_combine_data %>% 
-  group_by(Year_NBA, HEIGHT_GROUP) %>% 
-  mutate(zDEF_RTG_NBA = (-1) * standardize(DEF_RTG),
-         zSTL_PCT_NBA = standardize(STL_PCT),
-         zBLK_PCT_NBA = standardize(BLK_PCT),
-         z_HEIGHT = standardize(HEIGHT_NO_SHOES),
+  group_by(YEAR_NBA, HEIGHT_GROUP) %>% 
+  mutate(zDEF_RTG_NBA = (-1) * standardize(DEF_RTG_NBA),
+         zSTL_PCT_NBA = standardize(STL_PCT_NBA),
+         zBLK_PCT_NBA = standardize(BLK_PCT_NBA)) %>% 
+  ungroup() %>% 
+  group_by(HEIGHT_GROUP) %>% 
+  mutate(z_HEIGHT = standardize(HEIGHT_NO_SHOES),
          z_WINGSPAN = standardize(WINGSPAN),
-         z_VERTICAL = standardize(Max_Vertical),
-         z_AGILITY = standardize(Agility))
+         z_VERTICAL = standardize(MAX_VERTICAL),
+         z_AGILITY = standardize(AGILITY))
 
 
-nba_and_combine_data <- rename(nba_and_combine_data,
-                        YEAR_NBA = Year_NBA,
-                        TEAM_NBA = TEAM,
-                        GP_NBA = GP,
-                        GS_NBA = GS,
-                        MPG_NBA = MPG,
-                        DEF_RTG_NBA = DEF_RTG,
-                        STL_PCT_NBA = STL_PCT,
-                        BLK_PCT_NBA = BLK_PCT)
+
 
 # combine nba_and_combine_data with nba_all_defense_players
 
@@ -336,8 +346,8 @@ nba_and_combine_data <- left_join(nba_and_combine_data, nba_all_defense_players,
 ncaa_data <- ncaa_data %>% 
   group_by(Year, CONF_NCAA) %>% 
   filter(GP >= 15, MPG >= 12) %>% 
-  mutate(zDEF_RTG_NCAA = (-1) * standardize(DEF_RTG),
-         zSTL_PCT_NCAA = standardize(STL_PCT),
+  mutate(zSTL_PCT_NCAA = standardize(STL_PCT),
+         zDEF_RTG_NCAA = (-1) * standardize(DEF_RTG),
          zBLK_PCT_NCAA = standardize(BLK_PCT)) %>% 
   ungroup() %>% 
   select(PLAYERID, GP, GS, MPG, DEF_RTG, STL_PCT, BLK_PCT, zDEF_RTG_NCAA, zSTL_PCT_NCAA, zBLK_PCT_NCAA, Year, PLAYER, Team, CONF_NCAA)
@@ -353,11 +363,20 @@ ncaa_data <- rename(ncaa_data,
                                BLK_PCT_NCAA = BLK_PCT,
                                PLAYER_NCAA = PLAYER)
 
-# ?? only take last year of college
-
+ncaa_data <- ncaa_data %>% arrange(-YEAR_NCAA)
+ncaa_data <- ncaa_data[!duplicated(ncaa_data$PLAYERID),]
 
 ## ?? combine nba_and_combine_data with ncaa_data
 
+data_all <- left_join(nba_and_combine_data, ncaa_data, by = c("PLAYERID"))
+
+guards <- data_all %>% filter(HEIGHT_GROUP == 1)
+forwards <- data_all %>% filter(HEIGHT_GROUP == 2)
+centers <- data_all %>% filter(HEIGHT_GROUP == 3)
+
+save(guards, file = "data/guards.RData")
+save(forwards, file = "data/forwards.RData")
+save(centers, file = "data/centers.RData")
 
 
 
