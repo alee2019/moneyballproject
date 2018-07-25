@@ -2,24 +2,4 @@ load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/batting_2014_
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/combine_data.RData")
 View(combine_data)
 load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_data_all.RData")
-<<<<<<< HEAD
-load("/Users/AJ/Desktop/Moneyball2018Data/moneyballproject/data/nba_advanced.RData")
-=======
-load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/nba_data_all.RData")
-load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/ncaa_defense.RData")
-load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/nba_data_all.RData")
-load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/ncaa_defense.RData")
-load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/combine_data.RData")
-<<<<<<< HEAD
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/all_data.RData")
-=======
->>>>>>> 18821b693a7978527f443d8c04a43a8c7fd8e50d
->>>>>>> 2fb2326ca403f82fbc16f8028236b87eed656f0c
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_advanced.RData")
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/nba_college_combine_all.RData")
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/data_complete.RData")
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/all_defense_players.RData")
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/data_complete.RData")
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/combined.RData")
-load("/Users/leojacoby/programming/Moneyball/moneyballproject/data/data_complete.RData")
-load("/Users/ryan/Desktop/Moneyball/moneyballproject/data/combine_data.RData")
+load("/Users/andrewlee/Desktop/Moneyball/moneyballproject/data/nba_data_all.RData")
