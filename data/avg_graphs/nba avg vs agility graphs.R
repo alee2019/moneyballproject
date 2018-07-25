@@ -1,5 +1,5 @@
 #Graph and correlation of guards agility vs. block percentage
-graph_agility_blkpctavg_guards_career <- ggplot(data = guards_career_career) + geom_point(mapping = aes(x = z_AGILITY, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
+graph_agility_blkpctavg_guards_career <- ggplot(data = guards_career) + geom_point(mapping = aes(x = z_AGILITY, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
   geom_smooth(aes(x = z_AGILITY, rBLK_PCT_AVG_NBA), method = "lm", se = F) + 
   labs(title = "Agility and Block Percentage Comparison of Guards")
 

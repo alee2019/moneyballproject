@@ -1,5 +1,5 @@
 #Graph and correlation of guards wingspan vs. block percentage
-graph_wingspan_blkpctavg_guards_career <- ggplot(data = guards_career_career) + geom_point(mapping = aes(x = z_WINGSPAN, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
+graph_wingspan_blkpctavg_guards_career <- ggplot(data = guards_career) + geom_point(mapping = aes(x = z_WINGSPAN, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
   geom_smooth(aes(x = z_WINGSPAN, rBLK_PCT_AVG_NBA), method = "lm", se = F) + 
   labs(title = "Wingspan and Block Percentage Comparison of Guards")
 

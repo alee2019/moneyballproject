@@ -1,5 +1,5 @@
 #Graph and correlation of guards height vs. block percentage
-graph_height_blkpctavg_guards_career <- ggplot(data = guards_career_career) + geom_point(mapping = aes(x = z_HEIGHT, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
+graph_height_blkpctavg_guards_career <- ggplot(data = guards_career) + geom_point(mapping = aes(x = z_HEIGHT, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
   geom_smooth(aes(x = z_HEIGHT, rBLK_PCT_AVG_NBA), method = "lm", se = F) + 
   labs(title = "Height and Block Percentage Comparison of Guards")
 

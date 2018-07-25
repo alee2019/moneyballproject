@@ -1,5 +1,5 @@
 #Graph and correlation of guards vertical vs. block percentage
-graph_vertical_blkpctavg_guards_career <- ggplot(data = guards_career_career) + geom_point(mapping = aes(x = z_VERTICAL, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
+graph_vertical_blkpctavg_guards_career <- ggplot(data = guards_career) + geom_point(mapping = aes(x = z_VERTICAL, y = rBLK_PCT_AVG_NBA), size = .3, alpha = 0.3) +
   geom_smooth(aes(x = z_VERTICAL, rBLK_PCT_AVG_NBA), method = "lm", se = F) + 
   labs(title = "Vertical and Block Percentage Comparison of Guards")
 
