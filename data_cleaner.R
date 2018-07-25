@@ -298,6 +298,10 @@ standardize <- function(x) {
   return((x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE))
 }
 
+relativize <- function(x) {
+  return(x/median(x, na.rm = TRUE))
+}
+
 nba_and_combine_data <- nba_and_combine_data %>% 
   filter(!is.na(POS), GP_NBA >= 40, MPG_NBA >= 15.0)
 
@@ -323,7 +327,7 @@ nba_and_combine_data <- nba_and_combine_data %>%
   group_by(YEAR_NBA, HEIGHT_GROUP) %>% 
   mutate(zDEF_RTG_NBA = (-1) * standardize(DEF_RTG_NBA),
          zSTL_PCT_NBA = standardize(STL_PCT_NBA),
-         zBLK_PCT_NBA = standardize(BLK_PCT_NBA)) %>% 
+         rBLK_PCT_NBA = relativize(BLK_PCT_NBA)) %>% 
   ungroup() %>% 
   group_by(HEIGHT_GROUP) %>% 
   mutate(z_HEIGHT = standardize(HEIGHT_NO_SHOES),
@@ -348,9 +352,9 @@ ncaa_data <- ncaa_data %>%
   filter(GP >= 15, MPG >= 12) %>% 
   mutate(zSTL_PCT_NCAA = standardize(STL_PCT),
          zDEF_RTG_NCAA = (-1) * standardize(DEF_RTG),
-         zBLK_PCT_NCAA = standardize(BLK_PCT)) %>% 
+         rBLK_PCT_NCAA = relativize(BLK_PCT)) %>% 
   ungroup() %>% 
-  select(PLAYERID, GP, GS, MPG, DEF_RTG, STL_PCT, BLK_PCT, zDEF_RTG_NCAA, zSTL_PCT_NCAA, zBLK_PCT_NCAA, Year, PLAYER, Team, CONF_NCAA)
+  select(PLAYERID, GP, GS, MPG, DEF_RTG, STL_PCT, BLK_PCT, zDEF_RTG_NCAA, zSTL_PCT_NCAA, rBLK_PCT_NCAA, Year, PLAYER, Team, CONF_NCAA)
 
 ncaa_data <- rename(ncaa_data,
                                YEAR_NCAA = Year,
