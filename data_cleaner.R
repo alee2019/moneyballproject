@@ -1,4 +1,5 @@
 library(tidyverse)
+library(modelr)
 
 ## ?? deal with duplicates in PLAYERID columns with nba + ncaa
 
@@ -370,17 +371,42 @@ ncaa_data <- rename(ncaa_data,
 ncaa_data <- ncaa_data %>% arrange(-YEAR_NCAA)
 ncaa_data <- ncaa_data[!duplicated(ncaa_data$PLAYERID),]
 
-## ?? combine nba_and_combine_data with ncaa_data
 
 data_all <- left_join(nba_and_combine_data, ncaa_data, by = c("PLAYERID"))
+data_all <- mutate(data_all, isAllD = ifelse(!is.na(Team), 1,0))
 
+data_all <- data_all %>% 
+  group_by(PLAYERID) %>% 
+  mutate(DEF_RTG_AVG_NBA = mean(DEF_RTG_NBA, na.rm = TRUE),
+         STL_PCT_AVG_NBA = mean(STL_PCT_NBA, na.rm = TRUE),
+         BLK_PCT_AVG_NBA = mean(BLK_PCT_NBA, na.rm = TRUE)) %>%
+  ungroup() %>% 
+  group_by(HEIGHT_GROUP) %>% 
+  mutate(zDEF_RTG_AVG_NBA = (-1) * standardize(DEF_RTG_AVG_NBA),
+         zSTL_PCT_AVG_NBA = standardize(STL_PCT_AVG_NBA),
+         rBLK_PCT_AVG_NBA = relativize(BLK_PCT_AVG_NBA))
+
+career_data <- data_all %>%
+  group_by(PLAYERID, HEIGHT_GROUP, GP_NCAA, GS_NCAA, MPG_NCAA, zDEF_RTG_NCAA, 
+           zSTL_PCT_NCAA, rBLK_PCT_NCAA, CONF_NCAA, TEAM_NCAA, rBLK_PCT_AVG_NBA,
+           zSTL_PCT_AVG_NBA, zDEF_RTG_AVG_NBA, z_HEIGHT, z_WINGSPAN, z_VERTICAL, z_AGILITY) %>%
+  summarize()
+  
 guards <- data_all %>% filter(HEIGHT_GROUP == 1)
 forwards <- data_all %>% filter(HEIGHT_GROUP == 2)
 centers <- data_all %>% filter(HEIGHT_GROUP == 3)
 
+guards_career <- career_data %>% filter(HEIGHT_GROUP == 1)
+forwards_career <- career_data %>% filter(HEIGHT_GROUP == 2)
+centers_career <- career_data %>% filter(HEIGHT_GROUP == 3)
+
 save(guards, file = "data/guards.RData")
 save(forwards, file = "data/forwards.RData")
 save(centers, file = "data/centers.RData")
+
+save(guards_career, file = "data/guards_career.RData")
+save(forwards_career, file = "data/forwards_career.RData")
+save(centers_career, file = "data/centers_career.RData")
 
 
 
