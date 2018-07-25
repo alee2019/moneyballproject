@@ -1,6 +1,6 @@
 library(tidyverse)
 combined <- data_complete %>%
-  select(PLAYERID, POS, YEAR_NBA, YEAR_NCAA, TEAM_NBA, TEAM_NCAA, GP_NBA, GS_NBA, GP_NCAA, GS_NCAA, MPG_NBA,MPG_NCAA, DEF_RTG_NBA,DEF_RTG_NCAA, STL_PCT_NBA,STL_PCT_NCAA,BLK_PCT_NBA,BLK_PCT_NCAA , Agility, Shuttle, Sprint, Standing_Vertical, Max_Vertical, STANDING_REACH, Bench, HAND_LENGTH, HAND_WIDTH, HEIGHT_NO_SHOES, HEIGHT_SHOES, WEIGHT, WINGSPAN)
+  select(PLAYERID, POS, Year.x, YEAR, TEAM, Team, GP.x, GS.x, GP.y, GS.y, MPG.x,MPG.y, DEF_RTG.x,DEF_RTG.y, STL_PCT.x,STL_PCT.y,BLK_PCT.x,BLK_PCT.y , Agility, Shuttle, Sprint, Standing_Vertical, Max_Vertical, STANDING_REACH, Bench, HAND_LENGTH, HAND_WIDTH, HEIGHT_NO_SHOES, HEIGHT_SHOES, WEIGHT, WINGSPAN, ALL_DEFENSE, CONF_NCAA, zDEF_RTG_NCAA, zBLK_PCT_NCAA, zSTL_PCT_NCAA)
 library(tidyverse)
 
 combined_centers <- centers %>%
@@ -22,3 +22,4 @@ graph_centers
 graph_forwards
 graph_guards
 cor(centers[['DEF_RTG_NCAA']], centers[['DEF_RTG_NBA']])
+save(combined, file = "combined.RData")
