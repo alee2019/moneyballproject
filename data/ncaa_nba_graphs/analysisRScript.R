@@ -102,3 +102,23 @@ stl_pct_nba_hist <- ggplot(data_all) +
   theme_classic() +
   ggtitle("Histogram of NBA Block Percentage")
 stl_pct_nba_hist
+height <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = HEIGHT_NO_SHOES),binwidth = 0.2) +
+  theme_classic() +
+  ggtitle("Histogram of Combine Height Measurements")
+height
+wingspan <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = WINGSPAN),binwidth = 0.3) +
+  theme_classic() +
+  ggtitle("Histogram of Combine Wingspan Measurements")
+wingspan
+agility <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = AGILITY),binwidth = 0.1) +
+  theme_classic() +
+  ggtitle("Histogram of Combine Agility Measurements")
+agility
+vertical <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = MAX_VERTICAL),binwidth = 0.5) +
+  theme_classic() +
+  ggtitle("Histogram of Combine Maximum Vertical Measurements")
+vertical
