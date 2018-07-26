@@ -72,4 +72,33 @@ cor(centers_career[['zDEF_RTG_NCAA']], centers_career[['zDEF_RTG_AVG_NBA']], use
 cor(forwards_career[['zDEF_RTG_NCAA']], forwards_career[['zDEF_RTG_AVG_NBA']], use = 'na.or.complete')
 cor(guards_career[['zDEF_RTG_NCAA']], guards_career[['zDEF_RTG_AVG_NBA']], use = 'na.or.complete')
 
-
+def_rating_ncaa_hist <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = DEF_RTG_NCAA),binwidth = 0.5) +
+  theme_classic() +
+  ggtitle("Histogram of NCAA Defensive Rating")
+def_rating_ncaa_hist
+def_rating_nba_hist <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = DEF_RTG_NBA),binwidth = 0.5) +
+  theme_classic() +
+  ggtitle("Histogram of NBA Defensive Rating")
+def_rating_nba_hist
+blk_pct_ncaa_hist <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = BLK_PCT_NCAA),binwidth = 0.005) +
+  theme_classic() +
+  ggtitle("Histogram of NCAA Block Percentage")
+blk_pct_ncaa_hist
+blk_pct_nba_hist <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = BLK_PCT_NBA),binwidth = 0.005) +
+  theme_classic() +
+  ggtitle("Histogram of NBA Block Percentage")
+blk_pct_nba_hist
+stl_pct_ncaa_hist <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = STL_PCT_NCAA),binwidth = 0.001) +
+  theme_classic() +
+  ggtitle("Histogram of NCAA Steal Percentage")
+stl_pct_ncaa_hist
+stl_pct_nba_hist <- ggplot(data_all) +
+  geom_histogram(mapping = aes(x = STL_PCT_NBA),binwidth = 0.001) +
+  theme_classic() +
+  ggtitle("Histogram of NBA Block Percentage")
+stl_pct_nba_hist
